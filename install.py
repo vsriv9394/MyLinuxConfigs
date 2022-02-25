@@ -17,3 +17,4 @@ def setup(localFile, configFile):
 
 setup('tmux.conf', home + '/.tmux.conf')
 setup('vimrc'    , home + '/.vimrc')
+setup('inputrc'  , home + '/.inputrc')
