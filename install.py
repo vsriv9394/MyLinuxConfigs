@@ -7,8 +7,12 @@ def call(cmd): subp_call(cmd, shell=True)
 def setup(localFile, configFile):
     localFile = os.path.abspath(localFile)
     if os.path.exists(configFile):
-        print('Creating backup for ' + configFile)
-        call('mv ' + configFile + ' ' + configFile + '.bak')
+        if os.path.islink(configFile):
+            print('Removing existing symbolic link file ' + configFile)
+            call('rm ' + configFile)
+        else:
+            print('Creating backup for ' + configFile)
+            call('mv ' + configFile + ' ' + configFile + '.bak')
     call('ln -s ' + localFile + ' ' + configFile)
 
 setup('tmux.conf', home + '/.tmux.conf')
