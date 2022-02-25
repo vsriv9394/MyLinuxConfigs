@@ -1,5 +1,6 @@
 " Alias for the escape character
-imap kj <Esc>
+inoremap kj <Esc>
+vnoremap kj <Esc>
 
 " Colorscheme
 colo slate
