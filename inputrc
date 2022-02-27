@@ -4,11 +4,14 @@ set bell-style none
 # want vi to be the default editor for readline
 set editing-mode vi
 
+# Reload command for this file
+"\C-x\C-r": re-read-init-file
+
 # vi settings
 $if mode=vi
     # normal mode
     set keymap vi-command
     # insert mode
     set keymap vi-insert
-    "kj": vi-movement-mode # remap escape
+    "jk": vi-movement-mode # remap escape
 $endif

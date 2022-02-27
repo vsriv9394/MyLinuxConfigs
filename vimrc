@@ -1,12 +1,22 @@
-" Alias for the escape character
-inoremap kj <Esc>
-vnoremap kj <Esc>
+" Change the leader key to comma
+let mapleader = " "
+
+" Alias for the escape character (Press 'vv' to exit the visual mode)
+inoremap jk <Esc>
 
 " Colorscheme
 colo slate
 
+" Set incremental search
+set incsearch
+set hlsearch
+map <leader>h :noh<CR>
+
 " Set line numbers
 set nu
+
+" Follow syntax
+syntax on
 
 " Highlight the current line
 set cursorline
@@ -14,6 +24,10 @@ hi clear CursorLine
 hi clear CursorLineNR
 hi CursorLine ctermbg=234
 hi CursorLineNR ctermfg=red
+
+" Highlight column limit of 100
+set colorcolumn=100
+hi ColorColumn ctermbg=234
 
 " Do not split words while wrapping
 set linebreak
@@ -30,30 +44,20 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 \| exe "normal! g'\"" | endif
 endif
 
-" Status line style
-" Status Line Custom
+" Status line ======================================================================================================
 au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermbg=black ctermfg=magenta
 au InsertLeave * hi statusline guifg=black guibg=#8fbfdc ctermbg=black ctermfg=cyan
 hi statusline guifg=black guibg=#8fbfdc ctermbg=black ctermfg=cyan
 let g:currentmode={
-    \ "n"      : 'Normal',
-    \ "no"     : 'Normal·Operator Pending',
-    \ "v"      : 'Visual',
-    \ "V"      : 'V·Line',
-    \ "\<C-V>" : 'V·Block',
-    \ "s"      : 'Select',
-    \ "S"      : 'S·Line',
-    \ "\<C-S>" : 'S·Block',
-    \ "i"      : 'Insert',
-    \ "R"      : 'Replace',
-    \ "Rv"     : 'V·Replace',
-    \ "c"      : 'Command',
-    \ "cv"     : 'Vim Ex',
-    \ "ce"     : 'Ex',
-    \ "r"      : 'Prompt',
-    \ "rm"     : 'More',
-    \ "r?"     : 'Confirm',
-    \ "!"      : 'Shell',
+    \ "n"      : 'Normal'   , "no"     : 'Normal·Operator Pending',
+    \ "v"      : 'Visual'   , "V"      : 'V·Line'                 ,
+    \ "\<C-V>" : 'V·Block'  , "s"      : 'Select'                 ,
+    \ "S"      : 'S·Line'   , "\<C-S>" : 'S·Block'                ,
+    \ "i"      : 'Insert'   , "R"      : 'Replace'                ,
+    \ "Rv"     : 'V·Replace', "c"      : 'Command'                ,
+    \ "cv"     : 'Vim Ex'   , "ce"     : 'Ex'                     ,
+    \ "r"      : 'Prompt'   , "rm"     : 'More'                   ,
+    \ "r?"     : 'Confirm'  , "!"      : 'Shell'                  ,
     \ "t"      : 'Terminal'
     \}
 set laststatus=2
@@ -74,3 +78,4 @@ hi User1 ctermfg=007 ctermbg=239 guibg=#4e4e4e guifg=#adadad
 hi User2 ctermfg=007 ctermbg=236 guibg=#303030 guifg=#adadad
 hi User3 ctermfg=236 ctermbg=236 guibg=#303030 guifg=#303030
 hi User4 ctermfg=239 ctermbg=239 guibg=#4e4e4e guifg=#4e4e4e
+"====================================================================================================================
