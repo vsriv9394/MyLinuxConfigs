@@ -35,6 +35,11 @@ set linebreak
 " Automatic smart indentation when newline inserted
 set smartindent 
 
+" Add matching brackets, braces and parantheses
+inoremap [ []<Esc>i
+inoremap { {}<Esc>i
+inoremap ( ()<Esc>i
+
 " Tab character details
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
