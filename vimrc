@@ -5,7 +5,7 @@ let mapleader = " "
 inoremap jk <Esc>
 
 " Colorscheme
-colo slate
+colo onedark
 
 " Set incremental search
 set incsearch
@@ -36,9 +36,9 @@ set linebreak
 set smartindent 
 
 " Add matching brackets, braces and parantheses
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-inoremap ( ()<Esc>i
+" inoremap [ []<Esc>i
+" inoremap { {}<Esc>i
+" inoremap ( ()<Esc>i
 
 " Tab character details
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
