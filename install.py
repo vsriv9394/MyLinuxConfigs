@@ -17,8 +17,7 @@ def setup(localFile, configFile, createDir=False):
             call('mv ' + configFile + ' ' + configFile + '.bak')
     call('ln -s ' + localFile + ' ' + configFile)
 
-setup('tmux.conf'           , home + '/.tmux.conf'               )
-setup('vimrc'               , home + '/.vimrc'                   )
-setup('inputrc'             , home + '/.inputrc'                 )
-setup('colors/onedark.vim'  , home + '/.vim/colors/onedark.vim'  , createDir = True)
-setup('autoload/onedark.vim', home + '/.vim/autoload/onedark.vim', createDir = True)
+setup('tmux.conf' , home + '/.tmux.conf' )
+setup('vimrc'     , home + '/.vimrc'     )
+setup('inputrc'   , home + '/.inputrc'   )
+setup('vim/colors', home + '/.vim/colors')
