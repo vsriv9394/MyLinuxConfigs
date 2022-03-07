@@ -1,6 +1,3 @@
-" Set background to dark
-set background=dark
-
 " Change the leader key to comma
 let mapleader = " "
 
@@ -18,19 +15,10 @@ set nu
 " Follow syntax
 syntax on
 
-" Highlight the current line
-set cursorline
-hi clear CursorLine
-hi clear CursorLineNR
-hi CursorLine ctermbg=234
-hi CursorLineNR ctermfg=red
-
-" Highlight column limit of 100
-set colorcolumn=100
-hi ColorColumn ctermbg=234
-
 " Colorscheme
-colo gruvbox
+colo molokai
+set background=dark
+set cursorline
 
 " Do not split words while wrapping
 set linebreak
