@@ -16,7 +16,7 @@ set nu
 syntax on
 
 " Colorscheme
-colo jellybeans
+colo gruvbox
 set background=dark
 set cursorline
 
