@@ -16,7 +16,7 @@ set nu
 syntax on
 
 " Colorscheme
-colo molokai
+colo jellybeans
 set background=dark
 set cursorline
 
