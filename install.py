@@ -21,3 +21,11 @@ setup('tmux.conf' , home + '/.tmux.conf' )
 setup('vimrc'     , home + '/.vimrc'     )
 setup('inputrc'   , home + '/.inputrc'   )
 setup('vim/colors', home + '/.vim/colors')
+
+input = "Enable git to store your credentials on this machine? (y/n): "
+if input in ['y', 'Y', 'yes', 'Yes', 'YES']:
+    print('Storing your credentials on this machine')
+    call('git config --global credential.helper store')
+else:
+    print('No action taken for git credential.helper')
+print('Please call "git config --global credential.helper erase" to erase stored credentials')
