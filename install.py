@@ -22,8 +22,8 @@ setup('vimrc'     , home + '/.vimrc'     )
 setup('inputrc'   , home + '/.inputrc'   )
 setup('vim/colors', home + '/.vim/colors')
 
-input = "Enable git to store your credentials on this machine? (y/n): "
-if input in ['y', 'Y', 'yes', 'Yes', 'YES']:
+inp = input("Enable git to store your credentials on this machine? (y/n): ")
+if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
     print('Storing your credentials on this machine')
     call('git config --global credential.helper store')
 else:
