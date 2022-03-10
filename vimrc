@@ -20,6 +20,21 @@ colo gruvbox
 set background=dark
 set cursorline
 
+" Helps for fuzzy file finding
+filetype plugin on
+set path+=**
+set wildmenu
+
+" Directory pane on the left
+let g:netrw_banner = 0        " Remove banner
+let g:netrw_liststyle = 3     " Tree structure
+let g:netrw_browse_split = 4  " Open file in the previous pane
+let g:netrw_altv = 1          " Vertical orientation (I guess)
+let g:netrw_winsize = 25      " Width in percent of terminal width
+
+" Do not require saving/discarding a buffer to switch to another one
+set hidden
+
 " Do not split words while wrapping
 set linebreak
 
