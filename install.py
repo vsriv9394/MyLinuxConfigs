@@ -1,9 +1,12 @@
 import os
 from shutil import which
+from subprocess import call as subp_call
+
 home = os.environ['HOME']
 
-from subprocess import call as subp_call
+
 def call(cmd): subp_call(cmd, shell=True)
+
 
 def setup(localFile, configFile, createDir=False):
     localFile = os.path.abspath(localFile)
@@ -19,37 +22,6 @@ def setup(localFile, configFile, createDir=False):
     print('Creating symbolic link ' + configFile)
     call('ln -s ' + localFile + ' ' + configFile)
 
-setup('tmux.conf'   , home + '/.tmux.conf'   )
-setup('vimrc'       , home + '/.vimrc'       )
-setup('inputrc'     , home + '/.inputrc'     )
-setup('vim/colors'  , home + '/.vim/colors'  )
-setup('vim/autoload', home + '/.vim/autoload')
-
-if which('nvim') is not None:
-    if which('npm') is None:
-        inp = input('Install nodejs and npm? (y/n):')
-        if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
-            print('----------------------------------------------------------------------------')
-            call('sudo apt-get install nodejs npm')
-            print('----------------------------------------------------------------------------')
-    if which('clangd') is None:
-        inp = input('Install clangd-10? (y/n):')
-        if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
-            print('----------------------------------------------------------------------------')
-            call('sudo apt-get install clangd-10')
-            print('----------------------------------------------------------------------------')
-    if not os.path.exists(home + '/.local/share/nvim/site/pack/packer/start/packer.nvim'):
-        print('Installing packer for neovim...')
-        print('----------------------------------------------------------------------------')
-        call('git clone --depth 1 https://github.com/wbthomason/packer.nvim '\
-             + home + '/.local/share/nvim/site/pack/packer/start/packer.nvim')
-        print('----------------------------------------------------------------------------')
-    setup('nvim/init.lua', home + '/.config/nvim/init.lua')
-    setup('nvim/lua',      home + '/.config/nvim/lua'     )
-    setup('nvim/colors',   home + '/.config/nvim/colors'  )
-    setup('nvim/autoload', home + '/.config/nvim/autoload')
-    inp = input('NOTE: Perform a PackerSync from inside nvim... (Press any key)')
-    inp = input('NOTE: You might need to "pip install pyright" from within the python venv used during installation of nvim... (Press any key)')
 
 inp = input("Enable git to store your credentials on this machine? (y/n): ")
 if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
@@ -57,4 +29,75 @@ if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
     call('git config --global credential.helper store')
 else:
     print('No action taken for git credential.helper')
-print('Please call "git config --global credential.helper erase" to erase stored credentials')
+print(
+    'Please call "git config --global' +
+    ' credential.helper erase" to erase stored credentials'
+)
+
+setup('tmux.conf', home + '/.tmux.conf')
+setup('vimrc', home + '/.vimrc')
+setup('inputrc', home + '/.inputrc')
+setup('vim/colors', home + '/.vim/colors')
+setup('vim/autoload', home + '/.vim/autoload')
+
+if which('nvim') is not None:
+    if which('npm') is None:
+        inp = input('Install nodejs and npm? (y/n):')
+        if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
+            print(
+                '--------------------------------------'
+                '--------------------------------------'
+            )
+            call('sudo apt-get install nodejs npm')
+            print(
+                '--------------------------------------'
+                '--------------------------------------'
+            )
+    if which('clangd') is None:
+        inp = input('Install clangd-10? (y/n):')
+        if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
+            print(
+                '--------------------------------------'
+                '--------------------------------------'
+            )
+            call('sudo apt-get install clangd-10')
+            call(
+                'sudo update-alternatives --install '
+                '/usr/bin/clangd clangd /usr/bin/clangd-10 100'
+            )
+            print(
+                '--------------------------------------'
+                '--------------------------------------'
+            )
+    packerFile = '/.local/share/nvim/site/pack/packer/start/packer.nvim'
+    if not os.path.exists(home + packerFile):
+        print(
+            '--------------------------------------'
+            '--------------------------------------'
+        )
+        print('Installing packer for neovim...')
+        call(
+            'git clone --depth 1 https://github.com/wbthomason/packer.nvim '
+            + home + '/.local/share/nvim/site/pack/packer/start/packer.nvim'
+        )
+        print(
+            '--------------------------------------'
+            '--------------------------------------'
+        )
+    setup('nvim/init.lua', home + '/.config/nvim/init.lua')
+    setup('nvim/lua', home + '/.config/nvim/lua')
+    setup('nvim/colors', home + '/.config/nvim/colors')
+    setup('nvim/autoload', home + '/.config/nvim/autoload')
+    inp = input(
+        'NOTE: Perform a PackerSync from inside nvim... '
+        '(Press any key)'
+    )
+    inp = input(
+        'NOTE: Run "LspInstall clangd" and "LspInstall pylsp" '
+        'to install the correct language servers... (Press any key)'
+    )
+    inp = input(
+        'NOTE: You might need to "pip install pyright" from within '
+        'the python venv used during installation of nvim... '
+        '(Press any key)'
+    )
