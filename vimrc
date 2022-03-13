@@ -1,3 +1,8 @@
+" Colorscheme
+set background=dark
+colo gruvbox
+set cursorline
+
 " Change the leader key to comma
 let mapleader = " "
 
@@ -13,24 +18,12 @@ map <leader>h :noh<CR>
 set nu
 
 " Follow syntax
-syntax on
-
-" Colorscheme
-colo gruvbox
-set background=dark
-set cursorline
+" syntax on
 
 " Helps for fuzzy file finding
 filetype plugin on
 set path+=**
 set wildmenu
-
-" Directory pane on the left
-let g:netrw_banner = 0        " Remove banner
-let g:netrw_liststyle = 3     " Tree structure
-let g:netrw_browse_split = 4  " Open file in the previous pane
-let g:netrw_altv = 1          " Vertical orientation (I guess)
-let g:netrw_winsize = 25      " Width in percent of terminal width
 
 " Do not require saving/discarding a buffer to switch to another one
 set hidden
@@ -41,11 +34,6 @@ set linebreak
 " Automatic smart indentation when newline inserted
 set smartindent 
 
-" Add matching brackets, braces and parantheses
-" inoremap [ []<Esc>i
-" inoremap { {}<Esc>i
-" inoremap ( ()<Esc>i
-
 " Tab character details
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
@@ -55,10 +43,26 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 \| exe "normal! g'\"" | endif
 endif
 
+" Set cursor to block when in insert mode in neovim
+set guicursor=i-ci:block
+
+" Plugins go here ==================================================================================================
+" To install newly added plugins use :PlugInstall
+" To update all plugins use :PluginUpdate
+" To update a set of plugins use :PluginUpdate followed by a list of names
+call plug#begin()
+Plug 'preservim/NERDtree'
+call plug#end()
+
+" Plugin-specific shortcuts ========================================================================================
+" Toggle NERDTree
+nnoremap <leader>n :NERDTreeToggle<CR>
+
 " Status line ======================================================================================================
 au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermbg=black ctermfg=magenta
 au InsertLeave * hi statusline guifg=black guibg=#8fbfdc ctermbg=black ctermfg=cyan
 hi statusline                  guifg=black guibg=#8fbfdc ctermbg=black ctermfg=cyan
+" Use double quotes for keys in dictionary below to find ctrl key commands accurately
 let g:currentmode={
     \ "n"      : 'Normal'   , "no"     : 'Normal·Operator Pending',
     \ "v"      : 'Visual'   , "V"      : 'V·Line'                 ,
@@ -90,3 +94,17 @@ hi User2 ctermfg=007 ctermbg=236 guibg=#303030 guifg=#adadad
 hi User3 ctermfg=236 ctermbg=236 guibg=#303030 guifg=#303030
 hi User4 ctermfg=239 ctermbg=239 guibg=#4e4e4e guifg=#4e4e4e
 "====================================================================================================================
+
+" Old configurations ===============================================================================================
+
+" Directory pane on the left
+" let g:netrw_banner = 0        " Remove banner
+" let g:netrw_liststyle = 3     " Tree structure
+" let g:netrw_browse_split = 4  " Open file in the previous pane
+" let g:netrw_altv = 1          " Vertical orientation (I guess)
+" let g:netrw_winsize = 25      " Width in percent of terminal width
+
+" Add matching brackets, braces and parantheses
+" inoremap [ []<Esc>i
+" inoremap { {}<Esc>i
+" inoremap ( ()<Esc>i
