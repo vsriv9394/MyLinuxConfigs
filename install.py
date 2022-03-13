@@ -48,6 +48,7 @@ if which('nvim') is not None:
     setup('nvim/lua',      home + '/.config/nvim/lua'     )
     setup('nvim/colors',   home + '/.config/nvim/colors'  )
     setup('nvim/autoload', home + '/.config/nvim/autoload')
+    inp = input('NOTE: Perform a PackerSync from inside nvim... (Press any key)')
     inp = input('NOTE: You might need to "pip install pyright" from within the python venv used during installation of nvim... (Press any key)')
 
 inp = input("Enable git to store your credentials on this machine? (y/n): ")
