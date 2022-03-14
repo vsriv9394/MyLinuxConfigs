@@ -5,6 +5,7 @@ from subprocess import call as subp_call
 home = os.environ['HOME']
 
 
+# Test comment
 def call(cmd): subp_call(cmd, shell=True)
 
 
