@@ -11,6 +11,7 @@ keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<cr>', {noremap = true})
 keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<cr>', {noremap = true})
 keymap('n', 'gt', ':lua vim.lsp.buf.type_definition()<cr>', {noremap = true})
 keymap('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<cr>', {noremap = true})
+keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', {noremap = true})
 
 local cmp = require'cmp'
 
@@ -80,3 +81,4 @@ require('lspconfig')['pyright'].setup {
 require('lspconfig')['texlab'].setup {
     capabilities = capabilities
 }
+
