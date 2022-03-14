@@ -6,12 +6,12 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 local keymap = vim.api.nvim_set_keymap
-keymap('n', 'gd', ':lua vim.lsp.buf.definition()<cr>', {noremap = true})
-keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<cr>', {noremap = true})
-keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<cr>', {noremap = true})
-keymap('n', 'gt', ':lua vim.lsp.buf.type_definition()<cr>', {noremap = true})
-keymap('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<cr>', {noremap = true})
-keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', {noremap = true})
+keymap('n', 'gd', ':lua vim.lsp.buf.definition()<cr>', {noremap = true, silent = true})
+keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<cr>', {noremap = true, silent = true})
+keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<cr>', {noremap = true, silent = true})
+keymap('n', 'gt', ':lua vim.lsp.buf.type_definition()<cr>', {noremap = true, silent = true})
+keymap('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<cr>', {noremap = true, silent = true})
+keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', {noremap = true, silent = true})
 
 local cmp = require'cmp'
 
