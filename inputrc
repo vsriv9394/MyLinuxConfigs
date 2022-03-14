@@ -16,6 +16,9 @@ set vi-cmd-mode-string "\1\e[1;31m\2[:]\1\e[0m\2 "
 $if mode=vi
     # normal mode
     set keymap vi-command
+    "v": ""
+    "V": ""
+    "\C-v": ""
     # insert mode
     set keymap vi-insert
     "jk": vi-movement-mode # remap escape
