@@ -27,9 +27,11 @@ def setup(localFile, configFile, createDir=False):
 inp = input("Enable git to store your credentials on this machine? (y/n): ")
 if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
     print('Storing your credentials on this machine')
-    call('git config --global credential.helper store')
-else:
-    print('No action taken for git credential.helper')
+    with open('~/.gitconfig', 'w') as f:
+        f.write('[credential "https://github.com"]\n')
+        f.write('\tuseHttpPath = true\n')
+        f.write('[credential]\n')
+        f.write('\thelper = store\n')
 print(
     'Please call "git config --global' +
     ' credential.helper erase" to erase stored credentials'
