@@ -27,7 +27,7 @@ def setup(localFile, configFile, createDir=False):
 inp = input("Enable git to store your credentials on this machine? (y/n): ")
 if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
     print('Storing your credentials on this machine')
-    with open('~/.gitconfig', 'w') as f:
+    with open(os.path.join(home, '.gitconfig'), 'w') as f:
         f.write('[credential "https://github.com"]\n')
         f.write('\tuseHttpPath = true\n')
         f.write('[credential]\n')
