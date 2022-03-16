@@ -1,5 +1,5 @@
 import os
-import sys
+import argparse
 from subprocess import call as scall
 from subprocess import check_output
 
@@ -35,7 +35,19 @@ def gitsync():
 
 if __name__ == '__main__':
 
-    if len(sys.argv) == 2 and sys.argv[1] == 'master':
+    parser = argparse.ArgumentParser(description='Sync options')
+    parser.add_argument(
+        '--all',
+        default=False,
+        dest='syncAllRepos',
+        action='store_true'
+    )
+
+    args = parser.parse_args()
+
+    if args.syncAllRepos:
+
+        print('Syncing all repositories')
 
         gitdir = os.path.dirname(os.path.dirname(os.path.dirname(
             os.path.abspath(__file__)
@@ -46,19 +58,29 @@ if __name__ == '__main__':
         # Loop over all files and directories in ~/Git
         for dir in os.listdir(gitdir):
 
+            dirpath = os.path.join(gitdir, dir)
+
             # Check if the current entity is a directory
-            if os.path.isdir(dir):
+            if os.path.isdir(dirpath):
 
                 # Check whether the directory is a git repository
-                if '.git' in os.listdir(dir):
+                if '.git' in os.listdir(dirpath):
 
-                    os.chdir(os.path.join(gitdir, dir))
+                    os.chdir(dirpath)
                     print('-------------------------------------'
                           '-------------------------------------')
                     print('Entering repository "' + dir + '"')
                     print('-------------------------------------'
                           '-------------------------------------')
                     gitsync()
+
+                else:
+
+                    print('"' + dir + '" is not a github repository')
+
+            else:
+
+                print('"' + dir + '" is not a directory')
 
     else:
 
