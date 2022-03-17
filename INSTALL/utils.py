@@ -50,8 +50,8 @@ def backupAndAddLink(dest=None, src=None):
 
             if not linkPointsToSrc():
 
-                print('Creating backup for symbolic link ' + dest)
-                call('mv ' + dest + ' ' + dest + '.bak')
+                print('Removing existing active symbolic link ' + dest)
+                call('rm ' + dest)
 
             else:
 
@@ -113,5 +113,5 @@ def removeLinkAndRestoreBackup(src=None, dest=None):
 
     if os.path.exists(dest + '.bak'):
 
-        print('Restoring backup for ' + dest)
+        print('Restoring backup from file for ' + dest)
         call('mv ' + dest + '.bak' + ' ' + dest)
