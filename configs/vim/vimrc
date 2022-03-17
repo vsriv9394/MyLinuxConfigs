@@ -44,7 +44,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 endif
 
 " Set cursor to block when in insert mode in neovim
-" set guicursor=i-ci:block
+set guicursor=i-ci:block
 
 " Plugins go here ==================================================================================================
 " To install newly added plugins use :PlugInstall
