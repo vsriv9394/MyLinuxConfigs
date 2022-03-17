@@ -7,7 +7,7 @@ home = os.environ['HOME']
 def install():
 
     if not os.path.exists(home + '/bin'):
-        call('mkdir -p ' + home + '/bin')
+        call('mkdir -p ' + home + '/bin', shell=True)
         input('Please source your rc file again... [Press any key]')
     thisdir = os.path.dirname(os.path.abspath(__file__))
     with open(home + '/bin/gitsync', 'w') as f:
