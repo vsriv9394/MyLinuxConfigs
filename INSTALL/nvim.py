@@ -15,24 +15,16 @@ def installConfig_nvim():
 
     if which('nvim') is not None:
 
-        install_packer()
+        backupAndAddLink(
+            src=myconfigdir + '/configs/nvim',
+            dest=home + '/.config/nvim'
+        )
+        backupAndAddLink(
+            src=myconfigdir + '/externals/nvim/share/nvim',
+            dest=home + '/.local/share/nvim'
+        )
 
-        backupAndAddLink(
-            src=myconfigdir + '/configs/nvim/init.lua',
-            dest=home + '/.config/nvim/init.lua'
-        )
-        backupAndAddLink(
-            src=myconfigdir + '/configs/nvim/lua',
-            dest=home + '/.config/nvim/lua'
-        )
-        backupAndAddLink(
-            src=myconfigdir + '/configs/nvim/colors',
-            dest=home + '/.config/nvim/colors'
-        )
-        backupAndAddLink(
-            src=myconfigdir + '/configs/nvim/autoload',
-            dest=home + '/.config/nvim/autoload'
-        )
+        install_packer()
 
         runNeovimCommand(
             msg='sync neovim packages (Ignore any shown errors)',
@@ -61,28 +53,21 @@ def uninstallConfig_nvim():
     if which('nvim') is not None:
 
         removeLinkAndRestoreBackup(
-            src=myconfigdir + '/configs/nvim/init.lua',
-            dest=home + '/.config/nvim/init.lua'
+            src=myconfigdir + '/configs/nvim',
+            dest=home + '/.config/nvim'
         )
         removeLinkAndRestoreBackup(
-            src=myconfigdir + '/configs/nvim/lua',
-            dest=home + '/.config/nvim/lua'
-        )
-        removeLinkAndRestoreBackup(
-            src=myconfigdir + '/configs/nvim/colors',
-            dest=home + '/.config/nvim/colors'
-        )
-        removeLinkAndRestoreBackup(
-            src=myconfigdir + '/configs/nvim/autoload',
-            dest=home + '/.config/nvim/autoload'
+            src=myconfigdir + '/externals/nvim/share/nvim',
+            dest=home + '/.local/share/nvim'
         )
 
 
 def install_packer():
 
-    packerDest = '/.local/share/nvim/site/pack/packer/start/packer.nvim'
+    #packerDest = home + '/.local/share/nvim/site/pack/packer/start/packer.nvim'
+    packerDest = myconfigdir + '/externals/nvim/share/nvim/site/pack/packer/start/packer.nvim'
 
-    if not os.path.exists(home + packerDest):
+    if not os.path.exists(packerDest):
         print(
             '--------------------------------------'
             '--------------------------------------'
@@ -90,7 +75,7 @@ def install_packer():
         print('Installing packer for neovim...')
         call(
             'git clone --depth 1 https://github.com/wbthomason/packer.nvim '
-            + home + '/.local/share/nvim/site/pack/packer/start/packer.nvim'
+            + packerDest
         )
         print(
             '--------------------------------------'

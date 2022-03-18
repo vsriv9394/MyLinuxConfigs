@@ -24,9 +24,23 @@ def configureGitToStorePassword():
         )
 
 
+def addPluggedPathToVimRc():
+
+    vimfile = myconfigdir + '/configs/vim/vimrc'
+    plugPath = myconfigdir + '/externals/nvim/share/nvim/plugged'
+    oldFile = open(vimfile, 'r').readlines()
+    with open(vimfile, 'w') as f:
+        for line in oldFile:
+            if line[:16] == 'call plug#begin(':
+                line = 'call plug#begin(\'' + plugPath + '\')\n'
+            f.write(line)
+
+
 def installConfig_basic():
 
     configureGitToStorePassword()
+
+    addPluggedPathToVimRc()
 
     backupAndAddLink(
         src=myconfigdir + '/configs/tmux/tmux.conf',
@@ -44,13 +58,8 @@ def installConfig_basic():
     )
 
     backupAndAddLink(
-        src=myconfigdir + '/configs/vim/colors',
-        dest=home + '/.vim/colors'
-    )
-
-    backupAndAddLink(
-        src=myconfigdir + '/configs/vim/autoload',
-        dest=home + '/.vim/autoload'
+        src=myconfigdir + '/configs/vim',
+        dest=home + '/.vim'
     )
 
 
@@ -81,11 +90,6 @@ def uninstallConfig_basic():
     )
 
     removeLinkAndRestoreBackup(
-        src=myconfigdir + '/configs/vim/colors',
-        dest=home + '/.vim/colors'
-    )
-
-    removeLinkAndRestoreBackup(
-        src=myconfigdir + '/configs/vim/autoload',
-        dest=home + '/.vim/autoload'
+        src=myconfigdir + '/configs/vim',
+        dest=home + '/.vim'
     )
