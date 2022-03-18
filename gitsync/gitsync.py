@@ -22,7 +22,7 @@ def syncBranch(branchName):
 
     call('git pull')
 
-    if getOutput('git diff') != b'':
+    if getOutput('git diff') != '':
 
         commitMsg = input('Please enter a commit msg: ')
 
