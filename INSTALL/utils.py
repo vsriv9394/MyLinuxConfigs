@@ -6,6 +6,15 @@ home = os.environ['HOME']
 myconfigdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def getConfirmation(msg):
+
+    chk = input(msg + ' [y/n]: ')
+    while chk not in ['y', 'Y', 'n', 'N']:
+        print('Invalid Input...')
+        chk = input(msg + ' [y/n]: ')
+    return chk in ['y', 'Y']
+
+
 def call(cmd):
 
     scall(cmd, shell=True)

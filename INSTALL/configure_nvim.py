@@ -1,16 +1,13 @@
 import os
 from .utils import backupAndAddLink, removeLinkAndRestoreBackup, call
-from .utils import home, myconfigdir
+from .utils import home, myconfigdir, getConfirmation
 from shutil import which
 
 
 def runNeovimCommand(msg='', cmd=''):
 
-    chk = input('Do you want Neovim to ' + msg + '? [y/n]: ')
-    while chk not in ['y', 'Y', 'n', 'N']:
-        print('Invalid input')
-        chk = input('Do you want Neovim to ' + msg + '? [y/n]: ')
-    if chk in ['y', 'Y']:
+    if getConfirmation('Do you want neovim to ' + msg + '?'):
+
         call("nvim -c '" + cmd + "'")
 
 
@@ -18,8 +15,6 @@ def installConfig_nvim():
 
     if which('nvim') is not None:
 
-        install_npm()
-        install_clangd()
         install_packer()
 
         backupAndAddLink(
@@ -40,8 +35,12 @@ def installConfig_nvim():
         )
 
         runNeovimCommand(
-            msg='sync packages',
+            msg='sync neovim packages (Ignore any shown errors)',
             cmd='PackerSync'
+        )
+        runNeovimCommand(
+            msg='sync vim packages',
+            cmd='PlugInstall'
         )
         runNeovimCommand(
             msg='install LSP client for clangd',
@@ -77,42 +76,6 @@ def uninstallConfig_nvim():
             src=myconfigdir + '/configs/nvim/autoload',
             dest=home + '/.config/nvim/autoload'
         )
-
-
-def install_npm():
-
-    if which('npm') is None:
-        inp = input('Install nodejs and npm? (y/n):')
-        if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
-            print(
-                '--------------------------------------'
-                '--------------------------------------'
-            )
-            call('sudo apt-get install nodejs npm')
-            print(
-                '--------------------------------------'
-                '--------------------------------------'
-            )
-
-
-def install_clangd():
-
-    if which('clangd') is None:
-        inp = input('Install clangd-10? (y/n):')
-        if inp in ['y', 'Y', 'yes', 'Yes', 'YES']:
-            print(
-                '--------------------------------------'
-                '--------------------------------------'
-            )
-            call('sudo apt-get install clangd-10')
-            call(
-                'sudo update-alternatives --install '
-                '/usr/bin/clangd clangd /usr/bin/clangd-10 100'
-            )
-            print(
-                '--------------------------------------'
-                '--------------------------------------'
-            )
 
 
 def install_packer():

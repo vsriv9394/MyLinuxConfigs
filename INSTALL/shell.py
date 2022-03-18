@@ -53,6 +53,7 @@ def installConfig_shell():
 
 
 def uninstallConfig_shell():
+
     shellSource = open('.shellpath', 'r').read()
     contents = readSource(shellSource)
     contents = deleteExistingBlock(contents)

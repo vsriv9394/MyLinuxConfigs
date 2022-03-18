@@ -1,2 +1,4 @@
 .shellpath
 **/__pycache__
+externals/
+configs/shell/paths
