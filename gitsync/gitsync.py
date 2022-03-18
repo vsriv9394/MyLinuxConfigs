@@ -44,7 +44,7 @@ def gitsync():
     currentBranchName = 'master'
     while '' in branchNameList:
         branchNameList.remove('')
-    print(branchNameList)
+    # print(branchNameList)
 
     for branchName in branchNameList:
         if branchName[0] == '*':
