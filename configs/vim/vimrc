@@ -3,6 +3,9 @@ set background=dark
 colo gruvbox
 set cursorline
 
+" Disable recording
+map q <Nop>
+
 " Change the leader key to comma
 let mapleader = " "
 
