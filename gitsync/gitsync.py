@@ -16,6 +16,8 @@ def getOutput(cmd):
 
 def gitsync():
 
+    assert os.path.exists('.git'), 'This is not a git repo'
+
     call('git pull')
 
     if getOutput('git diff') != b'':
@@ -27,6 +29,10 @@ def gitsync():
             call('git add --all')
             call('git commit -m "' + commitMsg + '"')
             call('git push')
+
+        else:
+
+            print('Not committing')
 
     else:
 
@@ -73,14 +79,6 @@ if __name__ == '__main__':
                     print('-------------------------------------'
                           '-------------------------------------')
                     gitsync()
-
-                else:
-
-                    print('"' + dir + '" is not a github repository')
-
-            else:
-
-                print('"' + dir + '" is not a directory')
 
     else:
 
