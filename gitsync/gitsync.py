@@ -42,6 +42,8 @@ def gitsync():
 
     branchNameList = getOutput('git branch').split('\n')
     currentBranchName = 'master'
+    while '' in branchNameList:
+        branchNameList.remove('')
     print(branchNameList)
 
     for branchName in branchNameList:
