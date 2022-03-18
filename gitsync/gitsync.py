@@ -11,14 +11,16 @@ def call(cmd):
 
 def getOutput(cmd):
 
-    return str(check_output(cmd.split()))
+    return (check_output(cmd.split())).decode()
 
 
-def commitBranch(branchName):
+def syncBranch(branchName):
 
     assert os.path.exists('.git'), 'This is not a git repo'
 
     call('git checkout ' + branchName)
+
+    call('git pull')
 
     if getOutput('git diff') != b'':
 
@@ -31,17 +33,16 @@ def commitBranch(branchName):
 
         else:
 
-            print('-------------------------------------')
-            print(' Not committing')
-            print('-------------------------------------')
+            print(' Not committed')
+    
+    call('git push -u origin ' + branchName)
 
 
 def gitsync():
 
-    call('git pull --all')
-
     branchNameList = getOutput('git branch').split('\n')
     currentBranchName = 'master'
+    print(branchNameList)
 
     for branchName in branchNameList:
         if branchName[0] == '*':
@@ -49,9 +50,8 @@ def gitsync():
             currentBranchName = branchName
         else:
             branchName = branchName.strip()
-        commitBranch(branchName)
+        syncBranch(branchName)
 
-    call('git push --all')
     call('git checkout ' + currentBranchName)
 
 
