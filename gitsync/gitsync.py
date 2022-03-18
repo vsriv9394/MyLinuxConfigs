@@ -20,7 +20,7 @@ def gitsync():
 
     call('git pull')
 
-    if getOutput('git diff') != b'' or getOutput('git diff --staged') != b'':
+    if getOutput('git diff') != b'':
 
         commitMsg = input('Please enter a commit msg: ')
 
