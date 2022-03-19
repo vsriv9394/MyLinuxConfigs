@@ -14,47 +14,44 @@ def getOutput(cmd):
     return (check_output(cmd.split())).decode()
 
 
+def checkBranchName(branchName):
+
+    if branchName[0] == '*': return branchName[1:].strip(), True
+    else: return branchName.strip(), False
+
+
+def getBranchInfo():
+    
+    currentBranch = ''
+    assert os.path.exists('.git'), 'This is not a git repo'
+    branchList = getOutput('git branch').split('\n')
+    while '' in branchList: branchList.remove('')
+    for i in range(len(branchList)):
+        branchList[i], isCurrent = checkBranchName(branchList[i])
+        if isCurrent: currentBranch = branchList[i]
+    assert currentBranch != ''
+    return currentBranch, branchList
+
+
 def syncBranch(branchName):
 
-    assert os.path.exists('.git'), 'This is not a git repo'
-
     call('git checkout ' + branchName)
-
     call('git pull')
-
     if getOutput('git diff') != '':
-
         commitMsg = input('Please enter a commit msg: ')
-
         if commitMsg != '':
-
             call('git add --all')
             call('git commit -m "' + commitMsg + '"')
-
         else:
-
-            print(' Not committed')
-    
+            print('===== NOT COMMITTED =====')
     call('git push -u origin ' + branchName)
 
 
 def gitsync():
 
-    branchNameList = getOutput('git branch').split('\n')
-    currentBranchName = 'master'
-    while '' in branchNameList:
-        branchNameList.remove('')
-    # print(branchNameList)
-
-    for branchName in branchNameList:
-        if branchName[0] == '*':
-            branchName = branchName[1:].strip()
-            currentBranchName = branchName
-        else:
-            branchName = branchName.strip()
-        syncBranch(branchName)
-
-    call('git checkout ' + currentBranchName)
+    currentBranch, branchList = getBranchInfo()
+    for branch in branchList: syncBranch(branch)
+    call('git checkout ' + currentBranch)
 
 
 if __name__ == '__main__':

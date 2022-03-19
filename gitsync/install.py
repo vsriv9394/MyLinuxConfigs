@@ -12,7 +12,7 @@ def install():
     thisdir = os.path.dirname(os.path.abspath(__file__))
     with open(home + '/bin/gitsync', 'w') as f:
         f.write('#!/bin/bash\n')
-        f.write('python ' + thisdir + '/gitsync.py $1')
+        f.write('python ' + thisdir + '/gitsync.py $@')
     call('/bin/chmod +x ' + home + '/bin/gitsync', shell=True)
 
 
