@@ -38,10 +38,10 @@ def installConfig_nvim():
             msg='install LSP client for clangd',
             cmd='LspInstall clangd'
         )
-        runNeovimCommand(
-            msg='install LSP client for pylsp',
-            cmd='LspInstall pylsp'
-        )
+        #runNeovimCommand(
+        #    msg='install LSP client for pylsp',
+        #    cmd='LspInstall pylsp'
+        #)
         runNeovimCommand(
             msg='install LSP client for texlab',
             cmd='LspInstall texlab'
