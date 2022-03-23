@@ -30,6 +30,8 @@ def getBranchInfo():
         branchList[i], isCurrent = checkBranchName(branchList[i])
         if isCurrent: currentBranch = branchList[i]
     assert currentBranch != ''
+    branchList.remove(currentBranch)
+    branchList.insert(0, currentBranch)
     return currentBranch, branchList
 
 
