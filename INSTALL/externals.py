@@ -55,7 +55,7 @@ externals = {
     'pyright':
     {
         'install': True,
-        'custom': 'pip install pyright'
+        'custom': 'npm install -g pyright'
     },
 
     # LSP for latex
@@ -73,6 +73,7 @@ externals = {
 def installBinaries(key, value):
     name = value.split('/')[-1]
     name = name.split('.')
+    cmd = ''
     if name[-1] == 'gz':
         cmd = 'tar -xzf '
     if name[-1] == 'xz':

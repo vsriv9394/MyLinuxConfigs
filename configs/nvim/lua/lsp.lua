@@ -1,3 +1,5 @@
+-- Reference for this documentation: https://codevion.github.io/#!index.md
+-------------------------------------------------------------------------------
 -- LSP stuff (Install servers with LspInstall and not LSPInstall)
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
@@ -36,21 +38,27 @@ cmp.setup({
         }),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'vsnip' },
-    }, {
-        { name = 'buffer' },
-    })
+    sources = cmp.config.sources(
+        {
+            { name = 'nvim_lsp' },
+            { name = 'vsnip'    },
+        },
+        {
+            { name = 'buffer'   },
+        }
+    )
 })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-        { name = 'buffer' },
-    })
+    sources = cmp.config.sources(
+        {
+            { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+        },
+        {
+            { name = 'buffer'  },
+        }
+    )
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -62,11 +70,14 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    })
+    sources = cmp.config.sources(
+        {
+            { name = 'path'    },
+        },
+        {
+            { name = 'cmdline' },
+        }
+    )
 })
 
 -- Setup lspconfig.
@@ -75,13 +86,12 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- require('lspconfig')['clangd'].setup {
 --     capabilities = capabilities
 -- }
--- require('lspconfig')['pyright'].setup {
---     capabilities = capabilities
--- }
 -- require('lspconfig')['texlab'].setup {
 --     capabilities = capabilities
 -- }
---require('lspconfig')['pylsp'].setup {
---    capabilities = capabilities
---}
-
+-- require('lspconfig')['pylsp'].setup {
+--     capabilities = capabilities
+-- }
+-- require('lspconfig')['pyright'].setup {
+--     capabilities = capabilities
+-- }
