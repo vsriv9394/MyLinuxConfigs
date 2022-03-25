@@ -23,6 +23,9 @@ set nu
 " Follow syntax
 " syntax on
 
+" Force plaintex files to be recognized as tex files
+let g:tex_flavor = "latex"
+
 " Helps for fuzzy file finding
 filetype plugin on
 set path+=**
