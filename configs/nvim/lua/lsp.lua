@@ -1,11 +1,11 @@
 -- Reference for this documentation: https://codevion.github.io/#!index.md
 -------------------------------------------------------------------------------
 -- LSP stuff (Install servers with LspInstall and not LSPInstall)
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  server:setup(opts)
-end)
+-- local lsp_installer = require("nvim-lsp-installer")
+-- lsp_installer.on_server_ready(function(server)
+--   local opts = {}
+--   server:setup(opts)
+-- end)
 
 local keymap = vim.api.nvim_set_keymap
 keymap('n', 'gd', ':lua vim.lsp.buf.definition()<cr>', {noremap = true, silent = true})
@@ -82,16 +82,7 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['clangd'].setup {
---     capabilities = capabilities
--- }
--- require('lspconfig')['texlab'].setup {
---     capabilities = capabilities
--- }
--- require('lspconfig')['pylsp'].setup {
---     capabilities = capabilities
--- }
--- require('lspconfig')['pyright'].setup {
---     capabilities = capabilities
--- }
+-- Add lsp servers to this list
+require('lspconfig')['pyright'].setup { capabilities = capabilities }
+require('lspconfig')['clangd' ].setup { capabilities = capabilities }
+require('lspconfig')['texlab' ].setup { capabilities = capabilities, filetypes = { "tex", "bib", "plaintex" } }
