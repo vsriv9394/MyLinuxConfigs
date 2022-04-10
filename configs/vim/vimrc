@@ -29,6 +29,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Cycle buffers easily
+nnoremap <M-j> :bnext<CR>
+nnoremap <M-k> :bprev<CR>
+
 " Force plaintex files to be recognized as tex files
 let g:tex_flavor = "latex"
 
