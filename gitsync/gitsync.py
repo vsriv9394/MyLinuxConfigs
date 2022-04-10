@@ -39,10 +39,10 @@ def syncBranch(branchName):
 
     call('git checkout ' + branchName)
     call('git pull')
+    call('git add --all')
     if getOutput('git diff') != '':
         commitMsg = input('Please enter a commit msg: ')
         if commitMsg != '':
-            call('git add --all')
             call('git commit -m "' + commitMsg + '"')
         else:
             print('===== NOT COMMITTED =====')
