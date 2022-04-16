@@ -70,6 +70,8 @@ call plug#end()
 " Toggle NERDTree
 nnoremap <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " Status line ======================================================================================================
 au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermbg=black ctermfg=magenta
