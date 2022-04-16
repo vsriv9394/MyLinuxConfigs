@@ -29,10 +29,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Cycle buffers easily
-nnoremap <M-j> :bnext<CR>
-nnoremap <M-k> :bprev<CR>
-
 " Force plaintex files to be recognized as tex files
 let g:tex_flavor = "latex"
 
@@ -73,6 +69,7 @@ call plug#end()
 " Plugin-specific shortcuts ========================================================================================
 " Toggle NERDTree
 nnoremap <leader>n :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 1
 
 " Status line ======================================================================================================
 au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermbg=black ctermfg=magenta
@@ -93,12 +90,12 @@ let g:currentmode={
     \}
 set laststatus=2
 set statusline=
-set statusline+=%0*\ %n\                                 " Buffer number
-set statusline+=%1*\ %<%F%m%r%h%w\                       " File path, modified, readonly, helpfile, preview
+"set statusline+=%0*\ %n\                                 " Buffer number
+set statusline+=%0*\ %<%F%m%r%h%w\                       " File path, modified, readonly, helpfile, preview
 set statusline+=%3*│                                     " Separator
 set statusline+=%2*\ %Y\                                 " FileType
 set statusline+=%3*│                                     " Separator
-set statusline+=%2*\ %{''.(&fenc!=''?&fenc:&enc).''}     " Encoding
+"set statusline+=%2*\ %{''.(&fenc!=''?&fenc:&enc).''}     " Encoding
 set statusline+=\ (%{&ff})                               " FileFormat (dos/unix..)
 set statusline+=%=                                       " Right Side
 set statusline+=%2*\ col:\ %02v\                         " Colomn number
