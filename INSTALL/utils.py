@@ -24,6 +24,7 @@ def backupAndAddLink(dest=None, src=None):
 
     def createDestDirIfNotExists():
 
+        print('Creating (if not exists) ' + os.path.dirname(dest))
         call('mkdir -p ' + os.path.dirname(dest))
 
     def fileAlreadyExists():

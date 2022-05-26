@@ -6,7 +6,7 @@ from INSTALL.externals import installExternals
 
 def getOption(question, validResponseList):
     question += ' (' + '/'.join(validResponseList) + ')'
-    question += ' [' + validResponseList[0] + ']'
+    question += '[' + validResponseList[0] + '] '
     response = ''
     while response not in validResponseList:
         response = input(question)

@@ -62,7 +62,7 @@ set guicursor=i-ci:block
 " To install newly added plugins use :PlugInstall
 " To update all plugins use :PluginUpdate
 " To update a set of plugins use :PluginUpdate followed by a list of names
-call plug#begin('/home/vsriv/Git/MyLinuxConfigs/externals/nvim/share/nvim/plugged')
+call plug#begin('/home/svishal/Git/MyLinuxConfigs/externals/nvim/share/nvim/plugged')
 Plug 'preservim/NERDtree'
 call plug#end()
 
