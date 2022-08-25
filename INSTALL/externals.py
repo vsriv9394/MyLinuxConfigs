@@ -55,7 +55,7 @@ externals = {
     'pyright':
     {
         'install': True,
-        'custom': 'npm install -g pyright'
+        'custom': 'sudo npm install -g pyright'
     },
 
     # LSP for latex

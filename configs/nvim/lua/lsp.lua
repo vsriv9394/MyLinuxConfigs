@@ -12,7 +12,7 @@ keymap('n', 'gd', ':lua vim.lsp.buf.definition()<cr>', {noremap = true, silent =
 keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<cr>', {noremap = true, silent = true})
 keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<cr>', {noremap = true, silent = true})
 keymap('n', 'gt', ':lua vim.lsp.buf.type_definition()<cr>', {noremap = true, silent = true})
-keymap('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<cr>', {noremap = true, silent = true})
+keymap('n', '<M-k>', ':lua vim.lsp.buf.signature_help()<cr>', {noremap = true, silent = true})
 keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', {noremap = true, silent = true})
 
 local cmp = require'cmp'
