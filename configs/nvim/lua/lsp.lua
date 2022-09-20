@@ -86,3 +86,4 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig')['pyright'].setup { capabilities = capabilities }
 require('lspconfig')['clangd' ].setup { capabilities = capabilities }
 require('lspconfig')['texlab' ].setup { capabilities = capabilities, filetypes = { "tex", "bib", "plaintex" } }
+require('lspconfig')['cmake'  ].setup { capabilities = capabilities }
